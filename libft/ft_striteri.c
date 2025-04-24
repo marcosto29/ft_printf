@@ -1,21 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/22 12:57:52 by matoledo          #+#    #+#             */
-/*   Updated: 2025/04/24 11:42:08 by matoledo         ###   ########.fr       */
+/*   Created: 2025/04/13 16:38:44 by matoledo          #+#    #+#             */
+/*   Updated: 2025/04/16 10:34:28 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFTPRINTF_H
-# define LIBFTPRINTF_H
+#include "libft.h"
 
-# include <unistd.h>
-# include <stdarg.h>
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
+{
+	unsigned int	index;
 
-int	ft_printf(char const *input_text, ...);
-
-#endif
+	index = 0;
+	while (*s)
+	{
+		f(index, s);
+		index++;
+		s++;
+	}
+}

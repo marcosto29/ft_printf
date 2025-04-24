@@ -1,21 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/22 12:57:52 by matoledo          #+#    #+#             */
-/*   Updated: 2025/04/24 11:42:08 by matoledo         ###   ########.fr       */
+/*   Created: 2025/04/13 16:37:47 by matoledo          #+#    #+#             */
+/*   Updated: 2025/04/15 12:58:25 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFTPRINTF_H
-# define LIBFTPRINTF_H
+#include "libft.h"
 
-# include <unistd.h>
-# include <stdarg.h>
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+{
+	char			*pt_return;
+	char			*pt_aux;
+	unsigned int	index;
+	unsigned int	s_len;
 
-int	ft_printf(char const *input_text, ...);
-
-#endif
+	s_len = ft_strlen(s);
+	pt_return = ft_calloc(sizeof(char), (s_len + 1));
+	if (!pt_return)
+		return (0);
+	pt_aux = pt_return;
+	index = 0;
+	while (*s)
+	{
+		*pt_aux++ = f(index, *s++);
+		index++;
+	}
+	return (pt_return);
+}

@@ -1,21 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/22 12:57:52 by matoledo          #+#    #+#             */
-/*   Updated: 2025/04/24 11:42:08 by matoledo         ###   ########.fr       */
+/*   Created: 2025/04/09 16:08:49 by matoledo          #+#    #+#             */
+/*   Updated: 2025/04/17 15:02:11 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFTPRINTF_H
-# define LIBFTPRINTF_H
+#include <string.h>
 
-# include <unistd.h>
-# include <stdarg.h>
+char	*ft_strrchr(const char *s, int c)
+{
+	char	*pt_s;
 
-int	ft_printf(char const *input_text, ...);
-
-#endif
+	pt_s = 0;
+	while (*s)
+	{
+		if (*s == (char) c)
+			pt_s = (char *)s;
+		s++;
+	}
+	if (*s == (char) c)
+		return ((char *)s);
+	return (pt_s);
+}

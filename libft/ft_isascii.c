@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/22 12:57:52 by matoledo          #+#    #+#             */
-/*   Updated: 2025/04/24 11:42:08 by matoledo         ###   ########.fr       */
+/*   Created: 2025/04/08 13:47:49 by matoledo          #+#    #+#             */
+/*   Updated: 2025/04/08 21:01:03 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFTPRINTF_H
-# define LIBFTPRINTF_H
-
-# include <unistd.h>
-# include <stdarg.h>
-
-int	ft_printf(char const *input_text, ...);
-
-#endif
+int	ft_isascii(int c)
+{
+	if (c >= 0 && c <= 127)
+	{
+		return (1);
+	}
+	return (0);
+}

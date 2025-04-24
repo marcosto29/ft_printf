@@ -1,21 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/22 12:57:52 by matoledo          #+#    #+#             */
-/*   Updated: 2025/04/24 11:42:08 by matoledo         ###   ########.fr       */
+/*   Created: 2025/04/10 11:31:47 by matoledo          #+#    #+#             */
+/*   Updated: 2025/04/16 11:52:22 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFTPRINTF_H
-# define LIBFTPRINTF_H
+#include "libft.h"
 
-# include <unistd.h>
-# include <stdarg.h>
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
+{
+	const char	*pt_s1;
+	const char	*pt_s2;
 
-int	ft_printf(char const *input_text, ...);
-
-#endif
+	pt_s1 = s1;
+	pt_s2 = s2;
+	while (n--)
+	{
+		if (*pt_s1 != *pt_s2)
+		{
+			return (*(unsigned char *)pt_s1 - *(unsigned char *)pt_s2);
+		}
+		pt_s1++;
+		pt_s2++;
+	}
+	return (0);
+}

@@ -1,21 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/22 12:57:52 by matoledo          #+#    #+#             */
-/*   Updated: 2025/04/24 11:42:08 by matoledo         ###   ########.fr       */
+/*   Created: 2025/04/10 12:11:18 by matoledo          #+#    #+#             */
+/*   Updated: 2025/04/17 16:33:16 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFTPRINTF_H
-# define LIBFTPRINTF_H
+#include "libft.h"
 
-# include <unistd.h>
-# include <stdarg.h>
+char	*ft_strnstr(const char *big, const char *little, size_t len)
+{
+	size_t	len_little;
+	int		i;
 
-int	ft_printf(char const *input_text, ...);
-
-#endif
+	if (*little == '\0')
+		return ((char *)big);
+	len_little = ft_strlen(little);
+	i = 0;
+	while (*(big + i) && i + len_little <= len)
+	{
+		if (ft_strncmp(big + i, little, len_little) == 0)
+		{
+			return ((char *)big + i);
+		}
+		i++;
+	}
+	return (0);
+}

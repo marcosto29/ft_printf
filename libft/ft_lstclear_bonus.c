@@ -1,21 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/22 12:57:52 by matoledo          #+#    #+#             */
-/*   Updated: 2025/04/24 11:42:08 by matoledo         ###   ########.fr       */
+/*   Created: 2025/04/18 13:07:39 by matoledo          #+#    #+#             */
+/*   Updated: 2025/04/19 20:45:51 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFTPRINTF_H
-# define LIBFTPRINTF_H
+#include "libft.h"
 
-# include <unistd.h>
-# include <stdarg.h>
+void	ft_lstclear(t_list **lst, void (*del)(void*))
+{
+	t_list	*current_node;
 
-int	ft_printf(char const *input_text, ...);
-
-#endif
+	while (*lst)
+	{
+		current_node = *lst;
+		*lst = (*lst)->next;
+		del(current_node->content);
+		free(current_node);
+	}
+}

@@ -1,21 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/22 12:57:52 by matoledo          #+#    #+#             */
-/*   Updated: 2025/04/24 11:42:08 by matoledo         ###   ########.fr       */
+/*   Created: 2025/04/09 11:44:14 by matoledo          #+#    #+#             */
+/*   Updated: 2025/04/16 17:47:37 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFTPRINTF_H
-# define LIBFTPRINTF_H
+#include "libft.h"
 
-# include <unistd.h>
-# include <stdarg.h>
+void	*ft_memcpy(void *dest, const void *src, size_t n)
+{
+	char		*pt_dest;
+	const char	*pt_src;
 
-int	ft_printf(char const *input_text, ...);
-
-#endif
+	pt_src = src;
+	pt_dest = dest;
+	if (!src && !dest)
+		return (dest);
+	while (n--)
+	{
+		*pt_dest++ = *pt_src++;
+	}
+	return (dest);
+}

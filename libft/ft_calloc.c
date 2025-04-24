@@ -1,21 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/22 12:57:52 by matoledo          #+#    #+#             */
-/*   Updated: 2025/04/24 11:42:08 by matoledo         ###   ########.fr       */
+/*   Created: 2025/04/10 14:25:12 by matoledo          #+#    #+#             */
+/*   Updated: 2025/04/14 19:39:14 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFTPRINTF_H
-# define LIBFTPRINTF_H
+#include "libft.h"
 
-# include <unistd.h>
-# include <stdarg.h>
+void	*ft_calloc(size_t nmemb, size_t size)
+{
+	size_t	total;
+	char	*pt_call;
 
-int	ft_printf(char const *input_text, ...);
-
-#endif
+	total = nmemb * size;
+	pt_call = malloc(total);
+	if (!pt_call)
+		return (0);
+	ft_bzero(pt_call, total);
+	return (pt_call);
+}

@@ -1,21 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/22 12:57:52 by matoledo          #+#    #+#             */
-/*   Updated: 2025/04/24 11:42:08 by matoledo         ###   ########.fr       */
+/*   Created: 2025/04/10 13:00:42 by matoledo          #+#    #+#             */
+/*   Updated: 2025/04/23 16:01:22 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFTPRINTF_H
-# define LIBFTPRINTF_H
+#include "libft.h"
 
-# include <unistd.h>
-# include <stdarg.h>
+int	ft_atoi(const char *nptr)
+{
+	int	number;
+	int	negative;
 
-int	ft_printf(char const *input_text, ...);
-
-#endif
+	number = 0;
+	negative = 1;
+	while ((*nptr >= 9 && *nptr <= 13) || *nptr == 32)
+		nptr++;
+	if (*nptr == 43 || *nptr == 45)
+	{
+		if (*nptr == 45)
+			negative = -1;
+		nptr++;
+	}
+	while (ft_isdigit(*nptr))
+	{
+		number = number * 10 + (*nptr - '0');
+		nptr++;
+	}
+	return (number * negative);
+}
