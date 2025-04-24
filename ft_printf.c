@@ -6,7 +6,7 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 12:56:53 by matoledo          #+#    #+#             */
-/*   Updated: 2025/04/24 17:14:11 by matoledo         ###   ########.fr       */
+/*   Updated: 2025/04/24 18:20:26 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	ft_write_string(char *string, int *bytes)
 		*bytes += (int)write(1, string++, 1);
 }
 
-int	ft_write_character(char character, int *bytes)
+void	ft_write_character(char character, int *bytes)
 {
 	*bytes += (int)write(1, &character, 1);
 }
@@ -76,7 +76,7 @@ static int	ft_print_selector(char type, va_list arguments)
 	else if (type == 'p')
 	{
 		bytes += (int)write(1, "0x", 2);
-		ft_write_base(va_arg(arguments, void *), "0123456789abcdef", &bytes);
+		ft_write_base((unsigned long long)va_arg(arguments, void *), "0123456789abcdef", &bytes);
 	}
 	else if (type == 'x')
 		ft_write_base(va_arg(arguments, unsigned int), "0123456789abcdef", &bytes);
