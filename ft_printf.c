@@ -6,7 +6,7 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 12:56:53 by matoledo          #+#    #+#             */
-/*   Updated: 2025/04/24 18:20:26 by matoledo         ###   ########.fr       */
+/*   Updated: 2025/04/25 18:44:27 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,98 +14,71 @@
 #include "libftprintf.h"
 #include <stdio.h>
 
-size_t	ft_strlen(const char *c)
+int	ft_parse_num(long long number, const char *base_char, int fd)
 {
-	size_t	counter;
+	int	bytes_number;
 
-	counter = 0;
-	while (*c++)
+	bytes_number = 0;
+	if (number < 0)
 	{
-		counter++;
+		number *= -1;
+		bytes_number += (int)write(1, "-", 1);
 	}
-	return (counter);
+	bytes_number += ft_putnbr_base_fd_r(number, base_char, fd);
+	return (bytes_number);
 }
 
-void	ft_write_string(char *string, int *bytes)
+int	ft_parse_mem(unsigned long long number, const char *base_chars, int fd)
 {
-	while (*string)
-		*bytes += (int)write(1, string++, 1);
+	if (!number)
+		return ((int)write(fd, "(nil)", 5));
+	write(1, "0x", 2);
+	return (ft_putnbr_base_fd_r(number, base_chars, 1) + 2);
 }
 
-void	ft_write_character(char character, int *bytes)
+static int	ft_print_selector(char type, va_list args)
 {
-	*bytes += (int)write(1, &character, 1);
-}
-
-static void	ft_write_base(unsigned long long memory_adress,
-						const char *base_chars, int *bytes)
-{
-	size_t	base;
-	char	changed_number;
-
-	base = ft_strlen(base_chars);
-	if (memory_adress / base > 0)
-	{
-		ft_write_base(memory_adress / base, base_chars, bytes);
-	}
-	changed_number = *(base_chars + (memory_adress % base));
-	*bytes += (int)write(1, &changed_number, 1);
-}
-
-static void	ft_putnbr(int memory_adress, const char *base_chars, int *bytes)
-{
-	if (memory_adress < 0)
-	{
-		memory_adress *= -1;
-		*bytes += (int)write(1, "-", 1);
-	}
-	ft_write_base(memory_adress, base_chars, bytes);
-}
-
-static int	ft_print_selector(char type, va_list arguments)
-{
-	int	bytes;
-
-	bytes = 0;
 	if (type == '%')
-		bytes = (int)write(1, "%", 1);
+		return (ft_putchar_fd_r('%', 1));
 	else if (type == 'c')
-		ft_write_character((char)va_arg(arguments, int), &bytes);
+		return (ft_putchar_fd_r((char)va_arg(args, int), 1));
 	else if (type == 's')
-		ft_write_string(va_arg(arguments, char*), &bytes);
+		return (ft_putstr_fd_r(va_arg(args, char *), 1));
 	else if (type == 'p')
-	{
-		bytes += (int)write(1, "0x", 2);
-		ft_write_base((unsigned long long)va_arg(arguments, void *), "0123456789abcdef", &bytes);
-	}
+		return (ft_parse_mem((unsigned long long)va_arg(args, void *),
+				"0123456789abcdef", 1));
 	else if (type == 'x')
-		ft_write_base(va_arg(arguments, unsigned int), "0123456789abcdef", &bytes);
+		return (ft_putnbr_base_fd_r(va_arg(args, unsigned int),
+				"0123456789abcdef", 1));
 	else if (type == 'X')
-		ft_write_base(va_arg(arguments, unsigned int), "0123456789ABCDEF", &bytes);
+		return (ft_putnbr_base_fd_r(va_arg(args, unsigned int),
+				"0123456789ABCDEF", 1));
 	else if (type == 'd' || type == 'i')
-		ft_putnbr(va_arg(arguments, int), "0123456789", &bytes);
+		return (ft_parse_num(va_arg(args, int),
+				"0123456789", 1));
 	else if (type == 'u')
-		ft_write_base((unsigned int)va_arg(arguments, int), "0123456789", &bytes);
-	return (bytes);
+		return (ft_putnbr_base_fd_r((unsigned int)va_arg(args, int),
+				"0123456789", 1));
+	return (0);
 }
 
 int	ft_printf(char const *input_text, ...)
 {
-	va_list	arguments;
-	int	size_return;
+	va_list	args;
+	int		size_return;
 
 	size_return = 0;
-	va_start(arguments, input_text);
+	va_start(args, input_text);
 	while (*input_text)
 	{
 		if (*input_text == 37)
 		{
-			size_return += ft_print_selector(*(input_text + 1), arguments);
+			size_return += ft_print_selector(*(input_text + 1), args);
 			input_text += 2;
 		}
 		else
 			size_return += (int)write(1, input_text++, 1);
 	}
-	va_end(arguments);
+	va_end(args);
 	return (size_return);
 }

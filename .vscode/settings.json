@@ -59,6 +59,10 @@
   "files.associations": {
     "libftprintf.h": "c",
     "libft.h": "c",
-    "stdio.h": "c"
+    "stdio.h": "c",
+    "compare": "c",
+    "type_traits": "c",
+    "utility": "c",
+    "ft_printf.h": "c"
   }
 }

@@ -6,7 +6,7 @@
 #    By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/12 16:09:09 by matoledo          #+#    #+#              #
-#    Updated: 2025/04/24 11:51:11 by matoledo         ###   ########.fr        #
+#    Updated: 2025/04/25 18:36:59 by matoledo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,9 +30,12 @@ SRCS = ft_atoi.c \
 	ft_memcpy.c \
 	ft_memmove.c \
 	ft_memset.c \
+	ft_putchar_fd_r.c \
 	ft_putchar_fd.c \
 	ft_putendl_fd.c \
+	ft_putnbr_base_fd_r.c \
 	ft_putnbr_fd.c \
+	ft_putstr_fd_r.c \
 	ft_putstr_fd.c \
 	ft_split.c \
 	ft_strchr.c \
@@ -81,7 +84,7 @@ $(NAME): $(OBJS)
 #$@ refers to the target in this case %.o (what is at the left of the :)
 #$< refers to the first parameter in this case %.c (what is at the right of the :)
 %.o : %.c
-	$(CC) -c $(CFLAGS) $@ $<
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	rm -rf $(OBJS) $(OBJSBONUS)
