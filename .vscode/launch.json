@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": false,
-      "cwd": "/home/matoledo/printf",
-      "program": "/home/matoledo/printf/build/Debug/outDebug",
+      "cwd": "/home/matoledo/Desktop/printf",
+      "program": "/home/matoledo/Desktop/printf/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

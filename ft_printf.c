@@ -6,7 +6,7 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 12:56:53 by matoledo          #+#    #+#             */
-/*   Updated: 2025/04/25 18:44:27 by matoledo         ###   ########.fr       */
+/*   Updated: 2025/04/28 12:19:28 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,14 +67,21 @@ int	ft_printf(char const *input_text, ...)
 	va_list	args;
 	int		size_return;
 
+	if (!input_text)
+		return (-1);
 	size_return = 0;
 	va_start(args, input_text);
 	while (*input_text)
 	{
 		if (*input_text == 37)
 		{
-			size_return += ft_print_selector(*(input_text + 1), args);
-			input_text += 2;
+			input_text++;
+			while (*input_text == 32 && *input_text)
+				input_text++;
+			if (!*input_text)
+				return (-1);
+			size_return += ft_print_selector(*input_text, args);
+			input_text ++;
 		}
 		else
 			size_return += (int)write(1, input_text++, 1);
