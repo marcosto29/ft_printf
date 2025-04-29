@@ -6,7 +6,7 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 16:48:58 by matoledo          #+#    #+#             */
-/*   Updated: 2025/04/25 17:59:47 by matoledo         ###   ########.fr       */
+/*   Updated: 2025/04/29 12:17:14 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int		ft_putchar_fd_r(char c, int fd);
 void	ft_putchar_fd(char c, int fd);
 void	ft_putendl_fd(char *s, int fd);
 int		ft_putnbr_base_fd_r(unsigned long long number,
-			const char *base_chars, int fd);
+			const char *base_chars, int fd, int base_size);
 void	ft_putnbr_fd(int n, int fd);
 int		ft_putstr_fd_r(char *s, int fd);
 void	ft_putstr_fd(char *s, int fd);

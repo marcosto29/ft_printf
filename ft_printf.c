@@ -6,34 +6,34 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 12:56:53 by matoledo          #+#    #+#             */
-/*   Updated: 2025/04/28 12:19:28 by matoledo         ###   ########.fr       */
+/*   Updated: 2025/04/29 12:28:03 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
-#include "libftprintf.h"
+#include "ft_printf.h"
 #include <stdio.h>
 
-int	ft_parse_num(long long number, const char *base_char, int fd)
+int	ft_parse_num(long long number, const char *base, int fd)
 {
-	int	bytes_number;
+	int	bytes;
 
-	bytes_number = 0;
+	bytes = 0;
 	if (number < 0)
 	{
 		number *= -1;
-		bytes_number += (int)write(1, "-", 1);
+		bytes += (int)write(1, "-", 1);
 	}
-	bytes_number += ft_putnbr_base_fd_r(number, base_char, fd);
-	return (bytes_number);
+	bytes += ft_putnbr_base_fd_r(number, base, fd, ft_strlen(base));
+	return (bytes);
 }
 
-int	ft_parse_mem(unsigned long long number, const char *base_chars, int fd)
+int	ft_parse_mem(unsigned long long number, const char *base, int fd)
 {
 	if (!number)
 		return ((int)write(fd, "(nil)", 5));
 	write(1, "0x", 2);
-	return (ft_putnbr_base_fd_r(number, base_chars, 1) + 2);
+	return (ft_putnbr_base_fd_r(number, base, 1, ft_strlen(base)) + 2);
 }
 
 static int	ft_print_selector(char type, va_list args)
@@ -49,16 +49,16 @@ static int	ft_print_selector(char type, va_list args)
 				"0123456789abcdef", 1));
 	else if (type == 'x')
 		return (ft_putnbr_base_fd_r(va_arg(args, unsigned int),
-				"0123456789abcdef", 1));
+				"0123456789abcdef", 1, ft_strlen("0123456789abcdef")));
 	else if (type == 'X')
 		return (ft_putnbr_base_fd_r(va_arg(args, unsigned int),
-				"0123456789ABCDEF", 1));
+				"0123456789ABCDEF", 1, ft_strlen("0123456789ABCDEF")));
 	else if (type == 'd' || type == 'i')
 		return (ft_parse_num(va_arg(args, int),
 				"0123456789", 1));
 	else if (type == 'u')
 		return (ft_putnbr_base_fd_r((unsigned int)va_arg(args, int),
-				"0123456789", 1));
+				"0123456789", 1, ft_strlen("0123456789")));
 	return (0);
 }
 
