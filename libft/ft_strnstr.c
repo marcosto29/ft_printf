@@ -6,12 +6,13 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 12:11:18 by matoledo          #+#    #+#             */
-/*   Updated: 2025/04/17 16:33:16 by matoledo         ###   ########.fr       */
+/*   Updated: 2025/05/15 12:34:25 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+//function to search the substring little inside the string big
 char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
 	size_t	len_little;
@@ -29,5 +30,5 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 		}
 		i++;
 	}
-	return (0);
+	return (NULL);
 }

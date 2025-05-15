@@ -1,17 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear.c                                      :+:      :+:    :+:   */
+/*   ft_lstclear_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 13:07:39 by matoledo          #+#    #+#             */
-/*   Updated: 2025/04/19 20:45:51 by matoledo         ###   ########.fr       */
+/*   Updated: 2025/05/15 12:11:24 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+//function to cleanly delete the list with an external delete function
 void	ft_lstclear(t_list **lst, void (*del)(void*))
 {
 	t_list	*current_node;
@@ -20,7 +21,6 @@ void	ft_lstclear(t_list **lst, void (*del)(void*))
 	{
 		current_node = *lst;
 		*lst = (*lst)->next;
-		del(current_node->content);
-		free(current_node);
+		ft_lstdelone(current_node, del);
 	}
 }

@@ -5,13 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/13 16:39:41 by matoledo          #+#    #+#             */
-/*   Updated: 2025/04/25 16:01:57 by matoledo         ###   ########.fr       */
+/*   Created: 2025/05/15 10:06:07 by matoledo          #+#    #+#             */
+/*   Updated: 2025/05/15 12:23:42 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+//function to wirte the char c on specified fd and return the bytes written
 int	ft_putchar_fd_r(char c, int fd)
 {
 	return ((int)write(fd, &c, 1));

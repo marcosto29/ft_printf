@@ -6,13 +6,13 @@
 #    By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/12 16:09:09 by matoledo          #+#    #+#              #
-#    Updated: 2025/04/25 18:36:59 by matoledo         ###   ########.fr        #
+#    Updated: 2025/05/15 14:01:46 by matoledo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -I
 
 NAME = libft.a
 
@@ -33,7 +33,9 @@ SRCS = ft_atoi.c \
 	ft_putchar_fd_r.c \
 	ft_putchar_fd.c \
 	ft_putendl_fd.c \
-	ft_putnbr_base_fd_r.c \
+	ft_putnbr_fd_b_r.c \
+	ft_putnbr_fd_b.c \
+	ft_putnbr_fd_r.c \
 	ft_putnbr_fd.c \
 	ft_putstr_fd_r.c \
 	ft_putstr_fd.c \
@@ -84,7 +86,7 @@ $(NAME): $(OBJS)
 #$@ refers to the target in this case %.o (what is at the left of the :)
 #$< refers to the first parameter in this case %.c (what is at the right of the :)
 %.o : %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) -c $(CFLAGS) $@ $<
 
 clean:
 	rm -rf $(OBJS) $(OBJSBONUS)

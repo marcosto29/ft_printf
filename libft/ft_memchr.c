@@ -6,12 +6,13 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 16:44:58 by matoledo          #+#    #+#             */
-/*   Updated: 2025/04/17 15:03:48 by matoledo         ###   ########.fr       */
+/*   Updated: 2025/05/15 12:19:49 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+//function to get and return the first instance of c inside s
 void	*ft_memchr(const void *s, int c, size_t n)
 {
 	const char	*pt_char;
@@ -25,5 +26,5 @@ void	*ft_memchr(const void *s, int c, size_t n)
 		}
 		pt_char++;
 	}
-	return (0);
+	return (NULL);
 }

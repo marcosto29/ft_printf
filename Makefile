@@ -6,12 +6,12 @@
 #    By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/24 11:50:12 by matoledo          #+#    #+#              #
-#    Updated: 2025/04/28 12:24:15 by matoledo         ###   ########.fr        #
+#    Updated: 2025/04/29 13:15:55 by matoledo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = 
 
 NAME = libftprintf.a
 LIBFT_DIR = ./libft

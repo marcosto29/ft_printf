@@ -6,12 +6,13 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/13 16:25:32 by matoledo          #+#    #+#             */
-/*   Updated: 2025/04/16 15:05:51 by matoledo         ###   ########.fr       */
+/*   Updated: 2025/05/15 12:35:30 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+//function to delete any characters inside set on the beggining/ending of s1
 char	*ft_strtrim(char const *s1, char const *set)
 {
 	const char	*pt_return;
@@ -29,7 +30,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	memory_size = pt_return - s1;
 	pt_return = ft_calloc(sizeof(char), memory_size + 2);
 	if (!pt_return)
-		return (0);
+		return (NULL);
 	ft_memcpy((char *)pt_return, s1, memory_size + 1);
 	return ((char *)pt_return);
 }

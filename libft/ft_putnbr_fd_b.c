@@ -1,35 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_putnbr_fd_b.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/13 16:42:45 by matoledo          #+#    #+#             */
-/*   Updated: 2025/05/15 12:25:16 by matoledo         ###   ########.fr       */
+/*   Created: 2025/05/15 10:12:04 by matoledo          #+#    #+#             */
+/*   Updated: 2025/05/15 13:58:28 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-//function to write an integer on specified fd
-void	ft_putnbr_fd(int n, int fd)
+//function to print number in any base on specified fd 
+void	print_nbr(unsigned long long nbr, const char *b, int b_sz, int fd)
 {
-	char	c;
-
-	if (n == -2147483648)
+	if (nbr / b_sz > 0)
 	{
-		write(fd, "-2147483648", 11);
-		return ;
+		print_nbr(nbr / b_sz, b, b_sz, fd);
 	}
-	if (n < 0)
+	write(fd, (b + (nbr % b_sz)), 1);
+	return ;
+}
+
+//function to parse/write a long long in any base on specified fd
+void	ft_putnbr_fd_b(long long nbr, const char *b, int b_sz, int fd)
+{
+	if (nbr < 0)
 	{
-		n *= -1;
+		nbr *= -1;
 		write(fd, "-", 1);
 	}
-	if (n / 10 > 0)
-		ft_putnbr_fd(n / 10, fd);
-	c = n % 10 + '0';
-	write(fd, &c, 1);
-	return ;
+	print_nbr(nbr, b, b_sz, fd);
 }

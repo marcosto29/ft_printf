@@ -6,12 +6,13 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 16:08:49 by matoledo          #+#    #+#             */
-/*   Updated: 2025/04/17 15:02:11 by matoledo         ###   ########.fr       */
+/*   Updated: 2025/05/15 12:34:34 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
 
+//function to search the last instance of c inside s
 char	*ft_strrchr(const char *s, int c)
 {
 	char	*pt_s;

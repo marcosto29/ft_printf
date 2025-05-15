@@ -6,13 +6,13 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/13 16:36:34 by matoledo          #+#    #+#             */
-/*   Updated: 2025/04/17 19:06:43 by matoledo         ###   ########.fr       */
+/*   Updated: 2025/05/15 12:43:59 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static	unsigned int	number_size(int aux_n)
+static	unsigned int	number_size(long long aux_n)
 {
 	unsigned int	size;
 
@@ -25,7 +25,7 @@ static	unsigned int	number_size(int aux_n)
 	return (size);
 }
 
-static char	*ft_recursive(char *string, int n)
+static char	*ft_recursive(char *string, long long n)
 {
 	if (n / 10 > 0)
 		string = ft_recursive(string, n / 10);
@@ -33,14 +33,13 @@ static char	*ft_recursive(char *string, int n)
 	return (string);
 }
 
-char	*ft_itoa(int n)
+//function to transform an integer to a string
+char	*ft_itoa(long long n)
 {
 	char			*pt_return;
 	unsigned int	size;
 	unsigned int	negative;
 
-	if (n == -2147483648)
-		return (ft_strdup("-2147483648"));
 	negative = 0;
 	if (n < 0)
 	{
@@ -50,7 +49,7 @@ char	*ft_itoa(int n)
 	size = number_size(n);
 	pt_return = ft_calloc(sizeof(char), size + 1 + negative);
 	if (!pt_return)
-		return (0);
+		return (NULL);
 	if (negative > 0)
 		*pt_return = '-';
 	ft_recursive(pt_return + negative, n);

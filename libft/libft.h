@@ -6,7 +6,7 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 16:48:58 by matoledo          #+#    #+#             */
-/*   Updated: 2025/04/29 12:17:14 by matoledo         ###   ########.fr       */
+/*   Updated: 2025/05/15 14:00:00 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # define LIBFT_H
 # include <unistd.h>
 # include <stdlib.h>
+# include <stdarg.h>
 
 typedef struct s_list
 {
@@ -31,7 +32,7 @@ int		ft_isalpha(int c);
 int		ft_isascii(int c);
 int		ft_isdigit(int c);
 int		ft_isprint(int c);
-char	*ft_itoa(int n);
+char	*ft_itoa(long long n);
 void	ft_lstadd_back(t_list **lst, t_list *new);
 void	ft_lstadd_front(t_list **lst, t_list *new);
 void	ft_lstclear(t_list **lst, void (*del)(void*));
@@ -46,11 +47,15 @@ int		ft_memcmp(const void *s1, const void *s2, size_t n);
 void	*ft_memcpy(void *dest, const void *src, size_t n);
 void	*ft_memmove(void *dest, void *src, size_t n);
 void	*ft_memset(void *dest, int c, size_t n);
+int		ft_printf(char const *input_text, ...);
 int		ft_putchar_fd_r(char c, int fd);
 void	ft_putchar_fd(char c, int fd);
 void	ft_putendl_fd(char *s, int fd);
-int		ft_putnbr_base_fd_r(unsigned long long number,
-			const char *base_chars, int fd, int base_size);
+int		print_nbr_r(unsigned long long nbr, const char *b, int b_sz, int fd);
+int		ft_putnbr_fd_b_r(long long nbr, const char *b, int b_sz, int fd);
+void	print_nbr(unsigned long long nbr, const char *b, int b_sz, int fd);
+void	ft_putnbr_fd_b(long long nbr, const char *b, int b_sz, int fd);
+int		ft_putnbr_fd_r(int n, int fd);
 void	ft_putnbr_fd(int n, int fd);
 int		ft_putstr_fd_r(char *s, int fd);
 void	ft_putstr_fd(char *s, int fd);
